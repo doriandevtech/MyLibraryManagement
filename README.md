@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+MyLibraryManagement App build with NestJS, TypeORM and Postgres
 
 ## Installation
 
