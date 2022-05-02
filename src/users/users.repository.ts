@@ -7,12 +7,9 @@ import { User } from './user.entity';
 export class UsersRepository extends Repository<User> {
   private logger = new Logger('UsersRepository');
 
-  async getUsers(user: User): Promise<User[]> {
-    const query = this.createQueryBuilder('user');
-    query.where({ user });
-
+  async getUsers(): Promise<User[]> {
     try {
-      const users = await query.getMany();
+      const users = await this.find();
       return users;
     } catch (err) {
       this.logger.error(`Failed to get users`);
