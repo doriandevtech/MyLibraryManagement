@@ -1,4 +1,10 @@
-import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import {
+  IsArray,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class UpdateUserDto {
   @IsString()
@@ -13,4 +19,7 @@ export class UpdateUserDto {
     message: 'password is too weak',
   })
   password: string;
+
+  @IsArray()
+  userBooks: string[];
 }
