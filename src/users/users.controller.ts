@@ -36,11 +36,6 @@ export class UsersController {
     return this.userService.getUserById(id);
   }
 
-  @Post()
-  createUser(@Body() user: User): Promise<User> {
-    return this.userService.createUser(user);
-  }
-
   @Patch(':id')
   updateUser(
     @Param('id') id: string,
