@@ -17,7 +17,7 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  private logger = new Logger('UsersRepository');
+  private logger = new Logger('UserService');
 
   async signup(createUserDto: CreateUserDto): Promise<User> {
     const { username, password } = createUserDto;
