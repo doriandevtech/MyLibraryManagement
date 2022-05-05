@@ -19,7 +19,4 @@ export class CreateUserDto {
     message: 'password is too weak',
   })
   password: string;
-
-  @IsArray()
-  userBooks: string[];
 }
