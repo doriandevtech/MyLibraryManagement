@@ -17,26 +17,31 @@ import { UsersService } from './users.service';
 @Controller('users')
 @UseGuards(AuthGuard())
 export class UsersController {
-  constructor(private userService: UsersService) {}
+  constructor(private usersService: UsersService) {}
 
   @Post('/signup')
   signup(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return this.userService.signup(createUserDto);
+    return this.usersService.signup(createUserDto);
+  }
+
+  @Post('/signinp')
+  signin(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return this.usersService.signin(createUserDto);
   }
 
   @Get()
   getUsers(): Promise<User[]> {
-    return this.userService.getUsers();
+    return this.usersService.getUsers();
   }
 
   @Get('/me')
   getMe(user: User): Promise<User> {
-    return this.userService.getUserById(user.id);
+    return this.usersService.getUserById(user.id);
   }
 
   @Get(':id')
   getUserById(@Param('id') id: string): Promise<User> {
-    return this.userService.getUserById(id);
+    return this.usersService.getUserById(id);
   }
 
   @Patch(':id')
@@ -44,11 +49,11 @@ export class UsersController {
     @Param('id') id: string,
     @Body() updatedUserDto: UpdateUserDto,
   ): Promise<User> {
-    return this.userService.updateUser(id, updatedUserDto);
+    return this.usersService.updateUser(id, updatedUserDto);
   }
 
   @Delete(':id')
   deleteUserById(@Param('id') id: string): Promise<void> {
-    return this.userService.deleteUserById(id);
+    return this.usersService.deleteUserById(id);
   }
 }

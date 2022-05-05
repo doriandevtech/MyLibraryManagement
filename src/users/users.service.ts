@@ -31,6 +31,8 @@ export class UsersService {
     return user;
   }
 
+  async signin(createUserDto: CreateUserDto): Promise<User> {}
+
   async getUsers(): Promise<User[]> {
     try {
       return await this.usersRepository.find();
