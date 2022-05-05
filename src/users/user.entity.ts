@@ -11,7 +11,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column('text', { array: true })
+  @Column('text', { array: true, nullable: true })
   userBooks: string[];
 
   @ManyToMany(() => Book, (book) => book.user)
