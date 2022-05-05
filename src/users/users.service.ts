@@ -26,15 +26,14 @@ export class UsersService {
       username,
       password,
     });
-
     await this.usersRepository.save(user);
+
     return user;
   }
 
   async getUsers(): Promise<User[]> {
     try {
-      const users = await this.usersRepository.find();
-      return users;
+      return await this.usersRepository.find();
     } catch (err) {
       this.logger.error(`Failed to get users`);
       throw new InternalServerErrorException();
@@ -58,12 +57,15 @@ export class UsersService {
 
     updatedUser.username = username;
     updatedUser.password = password;
-    await this.usersRepository.save(updatedUser);
+    await this.usersRepository.update(
+      { id },
+      { username: username, password: password },
+    );
 
     return updatedUser;
   }
 
-  async deleteUserById(id: string) {
+  async deleteUserById(id: string): Promise<void> {
     const result = await this.usersRepository.delete(id);
 
     if (result.affected === 0) {
