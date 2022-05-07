@@ -52,10 +52,10 @@ export class UsersService {
     return found;
   }
 
-  async updateUser(id: string, updatedUserDto: UpdateUserDto): Promise<User> {
+  async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const updatedUser = await this.getUserById(id);
 
-    const { username, password } = updatedUserDto;
+    const { username, password } = updateUserDto;
 
     updatedUser.username = username;
     updatedUser.password = password;
