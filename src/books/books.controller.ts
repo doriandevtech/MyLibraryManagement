@@ -8,30 +8,30 @@ export class BooksController {
   constructor(private booksService: BooksService) {}
 
   @Get()
-  getUsers(): Promise<User[]> {
-    return this.booksService.getUsers();
+  getBook(): Promise<User[]> {
+    return this.booksService.getBooks();
   }
 
   @Get('/me')
   getMe(user: User): Promise<User> {
-    return this.booksService.getUserById(user.id);
+    return this.booksService.getBookById(user.id);
   }
 
   @Get(':id')
-  getUserById(@Param('id') id: string): Promise<User> {
-    return this.booksService.getUserById(id);
+  getBookById(@Param('id') id: string): Promise<User> {
+    return this.booksService.getBookById(id);
   }
 
   @Patch(':id')
-  updateUser(
+  editBook(
     @Param('id') id: string,
-    @Body() updatedUserDto: UpdateUserDto,
+    @Body() updateBookDto: UpdateBookDto,
   ): Promise<User> {
-    return this.booksService.updateUser(id, updatedUserDto);
+    return this.booksService.editBook(id, updateBookDto);
   }
 
   @Delete(':id')
-  deleteUserById(@Param('id') id: string): Promise<void> {
-    return this.booksService.deleteUserById(id);
+  deleteBookById(@Param('id') id: string): Promise<void> {
+    return this.booksService.deleteBookById(id);
   }
 }
