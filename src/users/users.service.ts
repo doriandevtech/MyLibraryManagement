@@ -11,13 +11,15 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { JwtPayload } from './jwt-payload.interface';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
-    private jwtService: JwtService;
+    private jwtService: JwtService,
   ) {}
 
   private logger = new Logger('UserService');
@@ -38,12 +40,12 @@ export class UsersService {
     const { username, password } = createUserDto;
     const user = await this.usersRepository.findOneBy({ username });
 
-    if (user && (await bcrypt.compare(password, user.password)) {
+    if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { username };
       const accessToken: string = await this.jwtService.sign(payload);
       return { accessToken };
     } else {
-      throw new UnauthorizedException("Please check your credentials");
+      throw new UnauthorizedException('Please check your credentials');
     }
   }
 
