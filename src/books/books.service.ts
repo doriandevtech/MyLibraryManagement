@@ -7,6 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Book } from './book.entity';
+import { UpdateBookDto } from './dto/update-book.dto';
 
 @Injectable()
 export class BooksService {
@@ -36,18 +37,28 @@ export class BooksService {
     return found;
   }
 
-  async editBookById(id: string, updatedUserDto: UpdateUserDto): Promise<User> {
-    const updatedUser = await this.getBookById(id);
+  async editBookById(id: string, updateBookDto: UpdateBookDto): Promise<Book> {
+    const updatedBook = await this.getBookById(id);
 
     const { title, description } = updateBookDto;
 
-    updatedUser.title = title;
-    updatedUser.description = description;
+    updatedBook.title = title;
+    updatedBook.description = description;
     await this.booksRepository.update(
       { id },
       { title: title, description: description },
     );
 
-    return updatedUser;
-  })
+    return updatedBook;
+  }
+
+  async deleteBookById(id: string): Promise<void> {
+    const result = await this.booksRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(
+        `The task with the ID ${id} has not been found`,
+      );
+    }
+  }
 }
