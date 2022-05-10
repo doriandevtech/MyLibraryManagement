@@ -24,8 +24,10 @@ export class UsersController {
     return this.usersService.signup(createUserDto);
   }
 
-  @Post('/signinp')
-  signin(@Body() createUserDto: CreateUserDto): Promise<User> {
+  @Post('/signin')
+  signin(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<{ accessToken: string }> {
     return this.usersService.signin(createUserDto);
   }
 
