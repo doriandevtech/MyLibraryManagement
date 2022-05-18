@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsEmail,
   IsString,
   Matches,
   MaxLength,
@@ -19,6 +20,18 @@ export class UpdateUserDto {
     message: 'password is too weak',
   })
   password: string;
+
+  @IsString()
+  firstname: string;
+
+  @IsString()
+  lastname: string;
+
+  @IsEmail()
+  @Matches(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  )
+  email: string;
 
   @IsArray()
   userBooks: string[];
