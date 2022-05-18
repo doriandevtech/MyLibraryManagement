@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsDate, IsNumber, IsString } from 'class-validator';
 
 export class UpdateBookDto {
   @IsString()
@@ -9,4 +9,10 @@ export class UpdateBookDto {
 
   @IsNumber()
   numberOfCopies: number;
+
+  @IsString()
+  author: string;
+
+  @IsDate()
+  dateOfCreation: Date;
 }
