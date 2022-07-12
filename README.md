@@ -24,7 +24,7 @@
 
 ## Description
 
-MyLibraryManagement App build with NestJS, TypeORM and Postgres
+MyLibraryManagement App 📚 build with NestJS 🐈‍⬛, TypeORM and Postgres 🐘
 
 ## Installation
 
